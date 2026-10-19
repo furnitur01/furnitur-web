@@ -1,11 +1,580 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+const whatsappNumber = "+6287880114482";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const categories = [
+  {
+    name: "Kitchen Set",
+    description: "Dapur custom yang fungsional dan rapi.",
+    icon: "01",
+  },
+  {
+    name: "Lemari Custom",
+    description: "Penyimpanan sesuai ukuran ruangan.",
+    icon: "02",
+  },
+  {
+    name: "Living Room",
+    description: "Furnitur ruang keluarga sesuai kebutuhan Anda.",
+    icon: "03",
+  },
+];
+
+const services = [
+  "Konsultasi kebutuhan dan ukuran",
+  "Desain sesuai ruang dan anggaran",
+  "Produksi furnitur custom",
+  "Pemasangan sesuai kesepakatan",
+];
+
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Daya Mandiri melayani pembuatan kitchen set, lemari custom, dan furnitur ruang keluarga di Ciomas, Bogor. Konsultasikan kebutuhan furnitur Anda melalui WhatsApp."
+    />
+    <meta name="theme-color" content="#f7f5f0" />
+    <title>Daya Mandiri | Furnitur Custom Ciomas, Bogor</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <a class="brand" href="#beranda" aria-label="Daya Mandiri — Furnitur Interior">
+        <img
+          src="/logo-daya-mandiri-horizontal.png"
+          alt="Daya Mandiri — Furnitur Interior"
+          class="brand-logo"
+          fetchpriority="high"
+        />
+      </a>
+
+      <nav aria-label="Navigasi utama">
+        <a href="#layanan">Layanan</a>
+        <a href="#produk">Produk</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <a class="header-cta" href="#kontak">Konsultasi</a>
+    </header>
+
+    <main>
+      <section class="hero" id="beranda">
+        <div class="hero-copy">
+          <p class="eyebrow">FURNITUR SESUAI KEBUTUHAN ANDA</p>
+          <h1>Ruang nyaman, dimulai dari furnitur yang tepat.</h1>
+          <p class="hero-description">
+            Kami membantu mewujudkan furnitur custom yang dirancang mengikuti
+            kebutuhan, ukuran ruang, dan gaya Anda.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button button-dark"
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Halo Furnitur Daya Mandiri, saya ingin konsultasi furnitur custom.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Konsultasi via WhatsApp ↗
+            </a>
+            <a class="text-link" href="#produk">Jelajahi produk ↓</a>
+          </div>
+
+          <div class="hero-note">
+            <span class="note-line"></span>
+            <span>Dirancang untuk ruang dan kebutuhan Anda.</span>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img
+            src="/images/header_kichen_set.jpeg"
+            alt="Kitchen set custom Daya Mandiri dengan kabinet putih dan motif kayu"
+            class="hero-photo"
+            fetchpriority="high"
+          />
+          <div class="art-caption">
+            <span>01 / KITCHEN SET CUSTOM</span>
+            <span>Simple. Functional. Personal.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" id="layanan">
+        <p class="eyebrow">DARI IDE MENJADI NYATA</p>
+        <div>
+          <h2>Setiap ruang punya cerita.<br />Kami membantu mewujudkannya.</h2>
+          <p>
+            Dari perencanaan hingga furnitur siap digunakan, kami mengutamakan
+            kebutuhan ruang, fungsi, dan detail pengerjaan.
+          </p>
+        </div>
+      </section>
+
+      <section class="products" id="produk">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PILIHAN FURNITUR</p>
+            <h2>Dibuat sesuai ruang Anda.</h2>
+          </div>
+          <span class="section-index">01 — 03</span>
+        </div>
+
+        <div class="product-grid">
+          {categories.map((category, index) => (
+            <article class="product-card">
+              <div class={`product-visual visual-${index + 1}`}>
+                <span class="visual-number">{category.icon}</span>
+                <div class="mini-furniture">
+                  <div></div><div></div><div></div>
+                </div>
+              </div>
+              <div class="product-info">
+                <div>
+                  <h3>{category.name}</h3>
+                  <p>{category.description}</p>
+                </div>
+                <a
+                  href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Halo, saya tertarik dengan layanan ${category.name}.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Tanyakan ${category.name} melalui WhatsApp`}
+                >↗</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="process">
+        <div>
+          <p class="eyebrow">CARA KAMI BEKERJA</p>
+          <h2>Jelas dari awal.<br />Dirancang dengan cermat.</h2>
+        </div>
+        <ol>
+          {services.map((service, index) => (
+            <li>
+              <span>0{index + 1}</span>
+              <p>{service}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="contact" id="kontak">
+        <p class="eyebrow">PUNYA RENCANA FURNITUR?</p>
+        <h2>Mari mulai dari ide Anda.</h2>
+        <p>Ceritakan kebutuhan ruang Anda. Kita diskusikan langkah berikutnya.</p>
+        <p class="contact-details">Ciomas, Bogor · Setiap hari, pukul 08.00–17.00</p>
+        <a
+          class="button button-light"
+          href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Halo Furnitur Daya Mandiri, saya ingin bertanya tentang furnitur custom.")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hubungi kami via WhatsApp ↗
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#beranda" aria-label="Daya Mandiri — Furnitur Interior">
+        <img
+          src="/logo-daya-mandiri-horizontal.png"
+          alt="Daya Mandiri — Furnitur Interior"
+          class="brand-logo"
+          loading="lazy"
+        />
+      </a>
+      <p>Furnitur yang mengikuti kebutuhan Anda.</p>
+      <span>© {new Date().getFullYear()} Furnitur Daya Mandiri</span>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html) { scroll-behavior: smooth; }
+  :global(body) {
+    margin: 0;
+    background: #E5DED1;
+    color: #242b24;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+  .header {
+    min-height: 90px;
+    padding: 18px 7%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 24px;
+    border-bottom: 1px solid #e4d9c8;
+
+    /* Gradasi cream ke beige */
+    background: linear-gradient(
+      0deg,
+      #E7D2B7 0%,
+      #F7F4ED 100%
+    );
+  }
+  .brand { display: inline-flex; align-items: center; justify-self: start; min-width: 0; }
+  .brand-logo {
+    display: block;
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .footer-brand .brand-logo { width: 190px; }
+  nav { display: flex; justify-self: center; gap: 32px; color: #5e625b; font-size: 13px; }
+  nav a:hover, .text-link:hover { color: #73866b; }
+  .header-cta { justify-self: end; padding: 12px 19px; border: 1px solid #b9beb3; font-size: 12px; }
+  .hero { display: grid; grid-template-columns: 1fr 0.94fr; min-height: 560px; padding: 54px 7% 62px; gap: 5%; align-items: center; }
+  .hero-copy { max-width: 590px; padding: 25px 0; }
+  .eyebrow { font-size: 10px; letter-spacing: 2.2px; font-weight: 700; color: #687d63; }
+  h1, h2, h3, p { margin-top: 0; }
+  h1 { margin: 20px 0 12px; max-width: 590px; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(42px, 5vw, 67px); font-weight: 400; letter-spacing: -2.5px; line-height: 1.08; }
+  .hero-description { max-width: 440px; color: #6d7068; font-size: 15px; line-height: 1.9; }
+  .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 30px; }
+  .button { display: inline-flex; justify-content: center; align-items: center; padding: 16px 20px; font-size: 12px; font-weight: 700; }
+  .button-dark { background: #304a38; color: white; }
+  .button-dark:hover { background: #203426; }
+  .text-link { font-size: 12px; font-weight: 700; }
+  .hero-note { display: flex; align-items: center; gap: 12px; margin-top: 52px; color: #77796f; font-size: 11px; }
+  .note-line { width: 32px; height: 1px; background: #91a087; }
+  .hero-image-wrap { position: relative; min-height: 410px; overflow: hidden; background: #e8e5d8; }
+  .hero-photo { display: block; width: 100%; height: 455px; object-fit: cover; object-position: center 55%; }
+  .hero-image-wrap .art-caption { z-index: 1; }
+  .art-caption { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; gap: 10px; padding: 15px; background: #f7f5f0; font-size: 8px; letter-spacing: 1px; }
+  .intro { display: grid; grid-template-columns: 0.65fr 1.35fr; gap: 5%; padding: 85px 12%; background: #eeece4; }
+  .intro h2, .section-heading h2, .process h2, .contact h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -1.5px; font-size: clamp(30px, 3.6vw, 43px); line-height: 1.18; }
+  .intro p:last-child { max-width: 500px; color: #6d7068; font-size: 14px; line-height: 1.9; }
+  .products { padding: 95px 7%; }
+  .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 35px; }
+  .section-heading h2 { margin-bottom: 0; }
+  .section-index { color: #77796f; font-size: 11px; }
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .product-card { min-width: 0; }
+  .product-visual { position: relative; height: 250px; overflow: hidden; display: grid; place-items: center; }
+  .visual-1 { background: #e8e0d1; }
+  .visual-2 { background: #e0e4da; }
+  .visual-3 { background: #e8dfdc; }
+  .visual-number { position: absolute; top: 15px; left: 15px; color: #77796f; font-size: 10px; }
+  .mini-furniture { width: 65%; height: 45%; display: flex; align-items: stretch; gap: 5px; transform: perspective(400px) rotateY(-8deg); }
+  .mini-furniture div { flex: 1; background: #b18c66; border: 4px solid #9b7958; box-shadow: 3px 6px 8px #0000000c; }
+  .visual-2 .mini-furniture { height: 65%; width: 48%; }
+  .visual-2 .mini-furniture div { background: #b9b8a5; border-color: #a5a48f; }
+  .visual-3 .mini-furniture { height: 34%; width: 75%; }
+  .visual-3 .mini-furniture div { background: #b48b7a; border-color: #9d7465; }
+  .product-info { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 0; border-bottom: 1px solid #dedbd2; }
+  .product-info h3 { margin-bottom: 8px; font-family: Georgia, serif; font-size: 21px; font-weight: 400; }
+  .product-info p { margin-bottom: 0; color: #77796f; font-size: 12px; line-height: 1.7; }
+  .product-info > a { flex-shrink: 0; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #c8c9bd; }
+  .process { display: grid; grid-template-columns: 1fr 1fr; gap: 9%; padding: 85px 12%; background: #eeece4; }
+  .process ol { list-style: none; padding: 0; margin: 0; }
+  .process li { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #d8d7cd; padding: 16px 0; }
+  .process li span { color: #78866f; font-size: 11px; }
+  .process li p { margin: 0; font-size: 13px; }
+  .contact {
+    padding: 85px 20px;
+    background: #304a38;
+    color: #fff;
+    text-align: center;
+  }
+
+  .contact .eyebrow {
+    color: #d2dbc9;
+  }
+
+  .contact h2 {
+    margin: 22px 0 15px;
+    font-size: clamp(36px, 4.5vw, 54px);
+  }
+
+  .contact > p:not(.eyebrow) {
+    color: #d2d9ce;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* Informasi lokasi dan jam operasional */
+  .contact-details {
+    margin-top: 18px;
+    font-size: 12px;
+    color: #d2d9ce;
+  }
+
+  .button-light {
+    margin-top: 15px;
+    background: #f7f5f0;
+    color: #304a38;
+  }
+  footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; padding: 30px 7%; }
+  footer > p, footer > span { margin: 0; color: #77796f; font-size: 10px; }
+  /* Laptop dan desktop standar */
+  @media (min-width: 761px) and (max-width: 1499px) {
+    .header {
+      padding-left: 6%;
+      padding-right: 6%;
+    }
+
+    .brand-logo {
+      width: 200px;
+    }
+
+    .hero,
+    .products {
+      padding-left: 6%;
+      padding-right: 6%;
+    }
+
+    .hero {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 4.2vw, 64px);
+      line-height: 1.08;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: clamp(340px, 36vw, 480px);
+      object-fit: cover;
+    }
+  }
+
+  /* HP */
+  @media (max-width: 760px) {
+    .header {
+      min-height: 0;
+      padding: 4px 4%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      column-gap: 8px;
+      row-gap: 2px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      min-width: 0;
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .brand-logo {
+      display: block;
+      width: clamp(145px, 40vw, 175px);
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      grid-column: 2;
+      grid-row: 1;
+      min-height: 44px;
+      padding: 0 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 0;
+      padding-top: 2px;
+      border-top: 1px solid #e5e0d7;
+      font-size: 12px;
+    }
+
+    nav a {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding: 8px 5% 18px;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 0;
+    }
+
+    .hero .eyebrow {
+      margin-bottom: 12px;
+      font-size: clamp(11px, 2.8vw, 13px);
+      letter-spacing: clamp(1px, 0.35vw, 1.5px);
+    }
+
+    h1 {
+      font-size: clamp(36px, 8vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin: 0 0 12px;
+    }
+
+    .hero-description {
+      margin-bottom: 16px;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      font-size: 11px;
+    }
+
+    .hero-actions {
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-actions .button {
+      min-height: 44px;
+      padding: 12px 13px;
+      font-size: 12px;
+    }
+
+    .hero-actions .text-link {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .hero-image-wrap {
+      min-height: auto;
+    }
+
+    .hero-photo {
+      height: clamp(200px, 60vw, 260px);
+      object-position: center 55%;
+    }
+
+    .art-caption {
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      font-size: 8px;
+      letter-spacing: 0.8px;
+    }
+
+    .intro,
+    .process {
+      grid-template-columns: 1fr;
+      padding: 46px 7%;
+      gap: 16px;
+    }
+
+    .intro h2,
+    .process h2 {
+      font-size: clamp(30px, 8vw, 36px);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .products {
+      padding: 52px 5%;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .product-visual {
+      height: clamp(200px, 58vw, 250px);
+    }
+
+    .section-heading {
+      align-items: start;
+      margin-bottom: 24px;
+    }
+
+    .section-index {
+      padding-top: 10px;
+    }
+
+    .contact {
+      padding: 52px 6%;
+    }
+
+    .contact h2 {
+      margin: 16px 0 12px;
+      font-size: clamp(32px, 8vw, 38px);
+    }
+
+    footer {
+      padding: 24px 5%;
+    }
+
+    .footer-brand .brand-logo {
+      width: 165px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero-actions {
+      gap: 8px;
+    }
+
+    .hero-actions .button {
+      padding: 11px 9px;
+      font-size: 11px;
+    }
+
+    .hero-photo {
+      height: clamp(190px, 60vw, 220px);
+    }
+  }
+
+  @media (max-width: 340px) {
+    .hero-actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .hero-actions .button {
+      width: 100%;
+    }
+
+    .hero-actions .text-link {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(html) { scroll-behavior: auto; }
+  }
+</style>
